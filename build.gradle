@@ -2,7 +2,9 @@ buildscript {
     repositories {
         mavenCentral()
         mavenLocal()
+       // jcenter()
         maven { url 'https://github.com/steffenschaefer/gwt-gradle-plugin/raw/maven-repo/' }
+        
     }
     dependencies {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.4'
@@ -27,6 +29,11 @@ allprojects {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven {
+            // Look for POMs and artifacts, such as JARs, here
+        url "http://javacvs.netbeans.org/source/browse/javacvs/libsrc/"
+    }
+        
     }
 }
 
@@ -99,6 +106,7 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        compile fileTree(dir: 'libs', include: '*.jar')
     }
 }
 
