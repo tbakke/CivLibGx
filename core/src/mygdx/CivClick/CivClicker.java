@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import mygdx.CivClick.core.CivUI;
 import mygdx.CivClick.core.Game;
@@ -111,9 +112,15 @@ public class CivClicker extends ApplicationAdapter {
         return game;
     }
     
+    public static void main (String[] args) throws Exception {
+     //   new LwjglApplication(new Barebones());
+    //    run (args);
+    }
+    
     public static void run (String[] args){
         // Game loop stuff.
-        long lastloop = System.nanoTime();
+     //   long lastloop = System.nanoTime();
+        long lastloop = TimeUtils.nanoTime();
         int targetfps = 60;
         long targettime = 1000000000 / targetfps;
         double delta = 0;
@@ -122,7 +129,7 @@ public class CivClicker extends ApplicationAdapter {
 
         while (isrunning) {
             //Game loop stuff.
-            long Now = System.nanoTime();
+            long Now = TimeUtils.nanoTime();
             long updateLength = Now - lastloop;
             delta += ((double) updateLength / 1000000000);
             lastloop = Now;
@@ -142,10 +149,10 @@ public class CivClicker extends ApplicationAdapter {
             try {
                 // Hacky way of keeping the sleep value out of negatives.
                 // Ideally the thread sleep will be 16 milliseconds regardless.
-                if ((lastloop - System.nanoTime() + targettime) / 1000000 < 0) {
+                if ((lastloop - TimeUtils.nanoTime() + targettime) / 1000000 < 0) {
                     Thread.sleep(16);
                 } else {
-                    Thread.sleep((lastloop - System.nanoTime() + targettime) / 1000000);
+                    Thread.sleep((lastloop - TimeUtils.nanoTime() + targettime) / 1000000);
                 }
             } catch (InterruptedException e) {
                 Console.println(e.getMessage(), Console.Type.s);

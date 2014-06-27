@@ -1,5 +1,6 @@
 package mygdx.CivClick.core;
 
+import com.badlogic.gdx.utils.TimeUtils;
 import mygdx.CivClick.util.Console;
 import mygdx.CivClick.util.Shorthand;
 import java.io.Serializable;
